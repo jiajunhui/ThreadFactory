@@ -4,16 +4,16 @@ package com.kk.taurus.threadpool;
  * Created by Taurus on 2017/3/3.
  */
 
-public class ThreadManager {
+public class DefaultThreadManager {
 
-    private static ThreadManager instance;
+    private static DefaultThreadManager instance;
     private DefaultPoolExecutor mDefaultPoolExecutor;
 
-    private ThreadManager(){
+    private DefaultThreadManager(){
         mDefaultPoolExecutor = DefaultPoolExecutor.getInstance();
     }
 
-    private ThreadManager(ExecutorSetting executorSetting){
+    private DefaultThreadManager(ExecutorSetting executorSetting){
         mDefaultPoolExecutor = DefaultPoolExecutor.getInstance(
                 executorSetting.getCorePoolSize(),
                 executorSetting.getMaximumPoolSize(),
@@ -21,22 +21,22 @@ public class ThreadManager {
                 executorSetting.getUnit());
     }
 
-    public static ThreadManager getInstance(){
+    public static DefaultThreadManager getInstance(){
         if(null == instance){
-            synchronized (ThreadManager.class){
+            synchronized (DefaultThreadManager.class){
                 if(null == instance){
-                    instance = new ThreadManager();
+                    instance = new DefaultThreadManager();
                 }
             }
         }
         return instance;
     }
 
-    public static ThreadManager getInstance(ExecutorSetting executorSetting){
+    public static DefaultThreadManager getInstance(ExecutorSetting executorSetting){
         if(null == instance){
-            synchronized (ThreadManager.class){
+            synchronized (DefaultThreadManager.class){
                 if(null == instance){
-                    instance = new ThreadManager(executorSetting);
+                    instance = new DefaultThreadManager(executorSetting);
                 }
             }
         }

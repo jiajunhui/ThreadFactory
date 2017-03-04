@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.kk.taurus.threadpool.ThreadManager;
+import com.kk.taurus.threadpool.DefaultThreadManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ThreadManager.getInstance().execute(new Runnable() {
+        DefaultThreadManager.getInstance().execute(new Runnable() {
             @Override
             public void run() {
                 try {
