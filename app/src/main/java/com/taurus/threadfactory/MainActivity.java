@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.kk.taurus.threadpool.DefaultThreadManager;
+import com.kk.taurus.threadpool.TaskCallBack;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +30,27 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        new TaskCallBack<Integer,Integer,String>(){
+            @Override
+            public void onPreExecute() {
+                super.onPreExecute();
+                Toast.makeText(MainActivity.this, "start", Toast.LENGTH_SHORT).show();
+                System.out.println("start ......");
+            }
+
+            @Override
+            public String doInBackground(Integer... params) {
+                System.out.println("doInBackground ......");
+                return String.valueOf(params[0]);
+            }
+
+            @Override
+            public void onPostExecute(String s) {
+                super.onPostExecute(s);
+                Toast.makeText(MainActivity.this, "result : " + s, Toast.LENGTH_SHORT).show();
+            }
+        }.execute(5);
 
     }
 }
