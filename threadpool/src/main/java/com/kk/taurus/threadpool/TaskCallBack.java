@@ -35,7 +35,9 @@ public abstract class TaskCallBack<Params,Progress,Result> implements RunnableCa
     };
 
     public TaskCallBack(){
-        mDefaultPoolExecutor = DefaultPoolExecutor.getInstance();
+        if(mDefaultPoolExecutor==null){
+            mDefaultPoolExecutor = DefaultPoolExecutor.getInstance();
+        }
     }
 
     @Override
