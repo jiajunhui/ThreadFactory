@@ -1,6 +1,5 @@
 package com.kk.taurus.threadpool;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.concurrent.ThreadFactory;
@@ -27,10 +26,10 @@ public class DefaultThreadFactory implements ThreadFactory {
         SecurityManager s = System.getSecurityManager();
         group = (s != null) ? s.getThreadGroup() :
                 Thread.currentThread().getThreadGroup();
-        namePrefix = "ARouter task pool No." + poolNumber.getAndIncrement() + ", thread No.";
+        namePrefix = "ThreadFactory task pool No." + poolNumber.getAndIncrement() + ", thread No.";
     }
 
-    public Thread newThread(@NonNull Runnable runnable) {
+    public Thread newThread(Runnable runnable) {
         String threadName = namePrefix + threadNumber.getAndIncrement();
         Log.i(TAG, "Thread production, name is [" + threadName + "]");
         Thread thread = new Thread(group, runnable, threadName, 0);
